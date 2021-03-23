@@ -4,7 +4,7 @@ The goal of this project is to enable a user to build an audience profile of Yel
 
 A user can search for businesses by category (i.e. 'mexican', 'cantonese') or search for all users who have written reviews for the same list of businesses. 
 
-*Note: This is a fork of the ICX Media Coding Assignment meant to test whether a database is needed at all for this project. I am planning to proceed without one as of writing (8/31/20)*
+*Note: This is a fork of a previous coding assignment meant to test whether a database is needed at all for this project. I am planning to proceed without one as of writing (8/31/20)*
 
 ## Use
 
