@@ -1,0 +1,46 @@
+#Variables prefixed with $ are replaced by values in the .env file
+version: '3'
+services:
+  server:
+    build: ./server
+    ports:
+      - "5000:5000"
+    networks:
+      - yab_fork_net
+    volumes:
+      - ./server:/usr/src/app/server
+    container_name: "yabdb_server"
+  database:
+    image: "postgres:latest"
+    env_file:
+      - ./yab-db/yab.env
+    volumes:
+      - yab-data:/var/lib/postgresql/data
+    container_name: "yabdb_docker"
+    networks:
+      - yab_fork_net
+  frontend: 
+    build: ./client
+    expose:
+      - "3000"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - "server"
+    volumes:
+      - ./client:/usr/src/app
+      # - ./client/src:/usr/src/app/client/src
+      # - ./client/public:/usr/src/app/client/public
+    networks:
+      - yab_fork_net
+    container_name: "yabdb_react"
+    environment: 
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    stdin_open: true
+    
+volumes:
+  yab-data: 
+
+networks:
+  yab_fork_net:

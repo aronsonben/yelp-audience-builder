@@ -1,0 +1,12 @@
+# Dockerfile to start front-end 
+FROM node:10
+WORKDIR /usr/src/app
+COPY package*.json ./
+RUN npm install
+# RUN npm install axios --save-dev
+# RUN npm install reactstrap --save-dev
+# RUN npm install bootstrap --save-dev
+COPY . . 
+EXPOSE 3000
+# Start application
+CMD [ "npm", "start" ]

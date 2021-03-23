@@ -1,0 +1,21 @@
+// From YelpSearch search form (11/5/20)
+<Form>
+    <FormGroup>
+        <Label for="categorySearch">Find</Label>
+        <Input type="select" name="categorySearch" id="categorySearch" placeholder="Afghan, Hawaiian, Spanish...">
+            {this.state.categories.map((category) => {
+                // let title = Object.keys(category)[0];
+                return (<option key={category} value={category}>{category}</option>);
+            })}
+        </Input>
+        <Label for="addressSearch">Near</Label>
+        <Input type="text" name="addressSearch" id="addressSearch" placeholder="1334 E St SE, Washington, D.C. 20003" 
+            value={this.state.address} onChange={this.areaChange}></Input>
+    </FormGroup>
+    <Button id="searchBtn" onClick={() => this.fullSearch()}>Search (users & business)</Button>
+    <Button id="bizSearchBtn" onClick={() => this.searchBusinesses()}>Find Businesses</Button>
+    <Button id="clearListsBtn" onClick={() => this.clearAllLists()}>Clear All</Button>
+</Form>
+
+
+

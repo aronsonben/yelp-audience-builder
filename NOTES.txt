@@ -1,0 +1,44 @@
+Notes to self:
+
+== 7/10/20 ==
+
+* docker-compose is set up with flask and postgres. To enter database, follow this guide: 
+    * https://medium.com/analytics-vidhya/getting-started-with-postgresql-using-docker-compose-34d6b808c47c
+        - `docker-compose run database bash`
+        - `psql --host=database --username=postgres --dbname=yab_db` >> password is Yelp20 (all from yab.env file)
+
+* creating db tables as written in notebook
+
+== 7/11/20 ==
+
+* categories inserted to db, now I need to write back-end code
+
+* Following this guide to get front-end up and running: https://www.robinwieruch.de/docker-create-react-app-development
+
+== 7/12/20 ==
+
+* SQL to create businesses tables:
+    - CREATE TABLE businesses (business_id varchar (50) PRIMARY KEY, business_name varchar (50) NOT NULL, business_alias varchar (50) NOT NULL, rating numeric, location varchar (150));
+    - CREATE TABLE business_categories (business_id varchar (50) NOT NULL, category_id int NOT NULL);
+
+
+== 8/31/20 ==
+
+* If the db gets erased, run these commands to re-insert categories table:
+
+docker cp yab-db/insert_categories.sql [yabdb_docker container id]:insert_categories.sql
+docker exec -u postgres [yabdb_docker container id] psql yab_db postgres -f insert_categories.sql
+
+source: https://stackoverflow.com/questions/34688465/how-do-i-run-a-sql-file-of-inserts-through-docker-run/34688994
+
+== 10/19/20 ==
+
+In order for Google Maps JavaScript API to work, I need to enable billing. This is the error I get when using react-places-autocomplete:
+
+"You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started Places API error: BillingNotEnabledMapError
+https://developers.google.com/maps/documentation/javascript/error-messages#billing-not-enabled-map-error"
+
+It requires me to make an account and put my credit card in. I don't *need* this right now so let me continue to work on something else then I can decide later what I want to do about this. 
+
+Here is a link to the react-places-autocomplete npm / git repo: https://www.npmjs.com/package/react-places-autocomplete
+I can use it by putting "<LocationSearchInput/>" into my code in YelpSearch.js.
